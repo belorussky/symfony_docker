@@ -1,0 +1,62 @@
+body {
+    background: url("../img/background-overlay-final.png");
+    background-repeat: no-repeat;
+    .text-overline{
+        text-decoration: line-through !important;
+        opacity: .2;
+    }
+    header {
+        background: #db4c3f;
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            &:hover {
+                color: #313131;
+                text-decoration: none;
+            }
+        }
+    }
+    .wrapper {
+        background: #ffffff;
+        position: absolute;
+        width: 70%;
+        height: 80vh;
+        overflow: scroll;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        border-radius: 10px;
+        box-shadow: -4px 7px 11px #65656557;
+        .accordion-item, .accordion > .accordion-item:not(:first-of-type):not(last-of-type) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125) !important;
+            border-width: 0 0 1px 0;
+            span.status {
+                display: inline-block;
+                border: 1px solid #cccccc;
+                border-radius: 50%;
+                background-color: #fff;
+                height: 15px;
+                width: 15px;
+                vertical-align: middle;
+                &.done {
+                    background: green;
+                    border: 1px solid green;
+                }
+            }
+        }
+        .todo-name {
+             font-size: 1.3rem;
+            color: #2e2e2e;
+        }
+        .collapser {
+            background-color: #ffffff;
+        }
+        .collapse.show,
+        .collapser[aria-expanded="true"] {
+            background: #d3cece2b;
+            box-shadow: none;
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Todo App {% endblock %}
+{% block body %}
+    {% if todos | length == 0 %}
+        No Todo for now!
+    {% else %}
+        <div class="row">
+            <div class="col-12">
+                {% for message in app.flashes('notice') %}
+                    <div class="falert alert-success mb-2 p-2">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            {% for todo in todos  %}
+                <div class="accordion-item">
+                    <div class="accordion-header" id="panelsStayOpen-headingOne">
+                        <div class="accordion-button collapser d-block p-2" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne{{ loop.index }}" aria-expanded="{% if loop.first %}true{% endif %}" aria-controls="panelsStayOpen-collapseOne{{ loop.index }}">
+                            <span class="status {% if todo.status | lower == 'done' %} done {% endif %}"></span>
+                            <span class="todo-name">{{ todo.name }}</span>
+                        </div>
+                    </div>
+                    <div id="panelsStayOpen-collapseOne{{ loop.index }}" class="accordion-collapse collapse {% if loop.first %}show{% endif %}" aria-labelledby="panelsStayOpen-headingOne">
+                        <div class="accordion-body">
+                            {{ todo.description }}
+                            <br>
+                            <span>Date: {{ todo.createdData | date("m/d/Y") }}</span>
+                            <hr>
+                            <ul class="nav">
+                                <li class="me-4 d-inline-block"><a href="/edit-todo/{{ todo.id }}">Edit</a></li>
+                                <li class="me-4 d-inline-block">
+                                    <a class="{% if todo.status | lower == 'done' %}text-overline{% endif %}"
+                                            {% if todo.status | lower != 'done' %} href="/closeTodo/{{ todo.id }}" {% endif %}>Close</a>
+                                </li>
+                                <li class="me-4 d-inline-block"><a href="/deletetodo/{{ todo.id }}">Delete</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

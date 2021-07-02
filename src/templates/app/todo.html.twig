@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+{#<div>#}
+{#    <strong>{{ name }}</strong>#}
+{#</div>#}
+
+{# {{ form(form) }} #}
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-12">
+            {% for message in app.flashes('notice') %}
+                <div class="falert alert-success mb-2 p-2">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form_label(form.priority, 'Please set the Priority') }}
+            {{ form_row(form.priority, {"label": false}) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(form.status) }}
+        </div>
+    </div>
+{{ form_end(form) }}
+{% endblock %}
